@@ -1,0 +1,6 @@
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #10b981; }
+.glow-emerald { box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.12); }
+.glow-btn:hover { box-shadow: 0 0 20px 0 rgba(16, 185, 129, 0.35); }
