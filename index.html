@@ -14,27 +14,11 @@
     <title>OptiMail Pro v3 | Enterprise Layout Studio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&family=JetBrains+Mono:wght=400;500;700&family=Playfair+Display:wght=700;800&family=Inter:wght=400;600;800&display=swap');
-        
-        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s, color 0.3s; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
-        
-        /* Premium Glow Architectures */
-        .glow-emerald { box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.12); }
-        .glow-btn:hover { box-shadow: 0 0 20px 0 rgba(16, 185, 129, 0.35); }
-        
-        /* Smooth transition animations for theme switching */
-        .theme-transition { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-    </style>
+    <link rel="stylesheet" href="css/theme-core.css">
+    <link rel="stylesheet" href="css/layout-studio.css">
 </head>
 <body id="app-body" class="bg-[#070a13] text-slate-100 min-h-screen antialiased selection:bg-emerald-500/30 selection:text-emerald-400 theme-transition">
 
-    <!-- Premium Core Ribbon Navigation Header Bar -->
     <header id="app-header" class="bg-[#0d1324]/80 backdrop-blur-md border-b border-slate-800/80 px-8 py-5 sticky top-0 z-50 flex flex-wrap gap-6 items-center justify-between shadow-2xl theme-transition">
         <div class="flex items-center gap-4">
             <div class="h-11 w-11 bg-gradient-to-tr from-emerald-500 to-teal-400 rounded-xl flex items-center justify-center text-slate-950 text-xl font-black shadow-lg shadow-emerald-500/20">👓</div>
@@ -43,11 +27,10 @@
                     <h1 id="brand-title" class="text-xl font-extrabold tracking-tight text-white">OPTIMAIL <span class="text-emerald-400 font-light">PRO V3</span></h1>
                     <span class="text-[10px] uppercase font-bold tracking-widest bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-md shadow-inner">Bespoke Studio License</span>
                 </div>
-                <p id="brand-subtitle" class="text-xs text-slate-400 mt-0.5">Automated high-conversion dynamic layout builder for premium eyewear brands</p>
+                <p id="brand-subtitle" class="text-xs text-slate-400 mt-0.5">Automated dynamic layout builder for premium eyewear brands</p>
             </div>
         </div>
         
-        <!-- Center Action Tab Routers Matrix -->
         <div id="tabs-wrapper" class="flex items-center bg-[#070a13] p-1.5 rounded-xl border border-slate-800/60 shadow-inner theme-transition">
             <button onclick="switchTab('design-tab')" id="btn-design-tab" class="px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-lg bg-emerald-500 text-slate-950 shadow-md transition-all duration-200 cursor-pointer">1. Layout Studio</button>
             <button onclick="switchTab('recipients-tab')" id="btn-recipients-tab" class="px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-lg text-slate-400 hover:text-slate-200 transition-all duration-200 cursor-pointer">2. Audience Matrix</button>
@@ -55,7 +38,6 @@
             <button onclick="switchTab('review-tab')" id="btn-review-tab" class="px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-lg text-slate-400 hover:text-slate-200 transition-all duration-200 cursor-pointer">4. Dispatch Engine 🚀</button>
         </div>
 
-        <!-- Right Side Day/Night Interactive Toggle Component -->
         <div class="flex items-center gap-2">
             <button onclick="toggleGlobalAppThemeMode()" class="bg-slate-800/80 hover:bg-slate-700 text-slate-300 dark:text-amber-400 p-2.5 rounded-xl border border-slate-700/60 transition cursor-pointer flex items-center gap-2 text-xs font-bold tracking-wide shadow-md">
                 <span id="theme-icon">☀️</span> <span id="theme-label">Day Mode</span>
@@ -63,64 +45,40 @@
         </div>
     </header>
 
-    <!-- Main Workspace Frame Grid Panel Container -->
     <main class="max-w-[1800px] mx-auto p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pb-24">
         
-        <!-- ================= LEFT SIDE CONFIGURATION FRAME MODULE ================= -->
         <section id="control-panel-box" class="lg:col-span-5 bg-[#0d1324] border border-slate-800 rounded-2xl p-7 shadow-2xl glow-emerald flex flex-col justify-between min-h-[800px] theme-transition">
-            
             <div class="space-y-6">
-                <!-- SECTION 1: MASTER STUDIO LAYOUT REGISTRY PANELS -->
+                
                 <div id="design-tab" class="space-y-6">
                     <div>
                         <h2 id="design-title-node" class="text-lg font-black text-white tracking-tight flex items-center gap-2"><span class="text-emerald-400">01 /</span> Layout Grid Selector</h2>
                         <p id="design-subtitle-node" class="text-xs text-slate-400 mt-1">Select your structural distribution strategy framework</p>
                     </div>
 
-                    <!-- Layout Presets Matrix Stack Container -->
                     <div id="presets-scroller" class="grid grid-cols-1 gap-2.5 max-h-56 overflow-y-auto pr-1">
                         <button onclick="setTemplate('grid')" id="tpl-grid" class="p-3.5 rounded-xl bg-[#070a13] border-2 border-emerald-500 text-left transition duration-150 cursor-pointer group theme-transition">
                             <div id="tpl-grid-title" class="text-xs font-bold text-white group-hover:text-emerald-400 transition">Preset 1: Catalog Showcase Grid</div>
                             <p class="text-[10px] text-slate-400 mt-0.5">Classic symmetrical matrix mapping for uniform storefront showcases.</p>
                         </button>
                         <button onclick="setTemplate('hero')" id="tpl-hero" class="p-3.5 rounded-xl bg-[#070a13] border border-slate-800 text-left transition duration-150 cursor-pointer group theme-transition">
-                            <div id="tpl-hero-title" class="text-xs font-bold text-slate-300 group-hover:text-emerald-400 transition">Preset 2: Single Master Hero Banner</div>
-                            <p class="text-[10px] text-slate-400 mt-0.5">Impactful standalone canvas optimized for singular clearance events.</p>
+                            <div id="tpl-hero-title" class="text-xs font-bold text-slate-300 group-hover:text-emerald-400 transition">Preset 2: Multi-Scale Hero Banner Suite</div>
+                            <p class="text-[10px] text-slate-400 mt-0.5">Impactful standalone canvases with adjustable size properties.</p>
                         </button>
                         <button onclick="setTemplate('split')" id="tpl-split" class="p-3.5 rounded-xl bg-[#070a13] border border-slate-800 text-left transition duration-150 cursor-pointer group theme-transition">
-                            <div id="tpl-split-title" class="text-xs font-bold text-slate-300 group-hover:text-emerald-400 transition">Preset 3: Split Category Showcase (Men vs Women)</div>
-                            <p class="text-[10px] text-slate-400 mt-0.5">Divided dual rows featuring independent collective headers and clear category direct tags.</p>
+                            <div id="tpl-split-title" class="text-xs font-bold text-slate-300 group-hover:text-emerald-400 transition">Preset 3: Responsive Split Grid Matrix</div>
+                            <p class="text-[10px] text-slate-400 mt-0.5">Even dual top rows followed by a balanced adaptive sub-grid row cascade.</p>
                         </button>
                         <button onclick="setTemplate('arrivals')" id="tpl-arrivals" class="p-3.5 rounded-xl bg-[#070a13] border border-slate-800 text-left transition duration-150 cursor-pointer group theme-transition">
-                            <div id="tpl-arrivals-title" class="text-xs font-bold text-slate-300 group-hover:text-emerald-400 transition">Preset 4: New Arrivals & Editorial Mixed Ad Space</div>
-                            <p class="text-[10px] text-slate-400 mt-0.5">Alternating horizontal banners blending image elements and messaging copy perfectly.</p>
+                            <div id="tpl-arrivals-title" class="text-xs font-bold text-slate-300 group-hover:text-emerald-400 transition">Preset 4: Mixed Cross-Category Editorial Showcase</div>
+                            <p class="text-[10px] text-slate-400 mt-0.5">Alternating multi-category layout blocks supporting Men, Women, and Arrivals.</p>
                         </button>
                         <button onclick="setTemplate('custom')" id="tpl-custom" class="p-3.5 rounded-xl bg-[#070a13] border border-slate-800 text-left transition duration-150 cursor-pointer group theme-transition">
-                            <div id="tpl-custom-title" class="text-xs font-bold text-slate-300 group-hover:text-emerald-400 transition">Preset 5: The Bespoke Unlocked Canvas Suite ✨</div>
-                            <p class="text-[10px] text-slate-400 mt-0.5">Total visual sovereignty. Custom typography scales, custom email wrapper colors, and infinite card control injections.</p>
+                            <div id="tpl-custom-title" class="text-xs font-bold text-slate-300 group-hover:text-emerald-400 transition">Preset 5: Total Sovereignty Custom Suite ✨</div>
+                            <p class="text-[10px] text-slate-400 mt-0.5">Bespoke color wrappers, adjustable typography scaling, and unlocked canvas logic blocks.</p>
                         </button>
                     </div>
 
-                    <!-- Bespoke Option Block Sub-Engine Frame Box -->
-                    <div id="custom-canvas-controls" class="p-4 bg-[#070a13] border border-slate-800 rounded-xl space-y-3 hidden theme-transition">
-                        <h3 class="text-xs font-bold uppercase tracking-widest text-emerald-400">Bespoke Theme Canvas Engine</h3>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-[9px] font-bold uppercase tracking-wide text-slate-400 mb-1">Email Background Frame</label>
-                                <input type="color" id="customBgColor" value="#ffffff" oninput="updatePreview()" class="w-full h-8 bg-[#0d1324] border border-slate-800 rounded p-0.5 cursor-pointer theme-transition">
-                            </div>
-                            <div>
-                                <label class="block text-[9px] font-bold uppercase tracking-wide text-slate-400 mb-1">Base Typography Stack</label>
-                                <select id="customFontFamily" onchange="updatePreview()" class="w-full bg-[#0d1324] border border-slate-800 text-slate-300 rounded text-[11px] h-8 px-1 focus:outline-none focus:border-emerald-500 theme-transition">
-                                    <option value="sans-serif">Modern System Sans</option>
-                                    <option value="'Playfair Display', serif">Luxury Serif (Editorial)</option>
-                                    <option value="'Inter', sans-serif">Clean Contemporary Minimal</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Interactive Slider Styling Knobs Control Block Grid -->
                     <div id="tuning-wrapper-box" class="p-4 bg-[#070a13] border border-slate-800/60 rounded-xl space-y-4 theme-transition">
                         <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-800/60 pb-2">Global Visual Tuning</h3>
                         <div class="grid grid-cols-2 gap-3.5">
@@ -154,22 +112,19 @@
                         </div>
                     </div>
 
-                    <!-- Editorial Content Headers Config Section Block -->
                     <div id="headers-wrapper-box" class="p-4 bg-[#070a13] border border-slate-800/60 rounded-xl space-y-3 theme-transition">
-                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400">Editorial Editorial Copy Headers</h3>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400">Editorial Copy Headers</h3>
                         <input type="text" id="mainHeadline" value="EXCLUSIVE SPRING OUTLET CLEARANCE" oninput="updatePreview()" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2 text-xs text-white focus:outline-none focus:border-emerald-500 theme-transition">
                         <textarea id="mainSubhead" oninput="updatePreview()" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2 text-xs text-slate-300 focus:outline-none focus:border-emerald-500 resize-none h-14 leading-relaxed theme-transition">Elevate your outlook. Explore handcrafted visual frames precisely calibrated for maximum clarity and ergonomic comfort.</textarea>
                     </div>
 
-                    <!-- Dynamic Card Loop Controller Structure Node Container -->
                     <div class="space-y-3">
                         <div class="flex items-center justify-between px-1">
                             <h3 id="asset-block-title" class="text-xs font-bold uppercase tracking-widest text-slate-400">Layout Asset Block Modules</h3>
                             <button onclick="addNewProductCardRecordObject()" class="bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 text-[10px] font-bold tracking-wider px-3 py-1 rounded-md transition cursor-pointer">+ Add Dynamic Card Block</button>
                         </div>
                         <div id="dynamic-cards-input-list-container" class="space-y-3 max-h-72 overflow-y-auto pr-1">
-                            <!-- JS loop logic maps active elements inputs inside here live -->
-                        </div>
+                            </div>
                     </div>
 
                     <div class="pt-2">
@@ -177,20 +132,21 @@
                     </div>
                 </div>
 
-                <!-- SECTION 2: AUDIENCE RECIPIENTS TARGET DATA PROCESSING HOVER DOCK -->
                 <div id="recipients-tab" class="space-y-6 hidden">
                     <div>
                         <h2 id="audience-title-node" class="text-lg font-black text-white tracking-tight flex items-center gap-2"><span class="text-emerald-400">02 /</span> Shopify Contact Database Core</h2>
-                        <p id="audience-subtitle-node" class="text-xs text-slate-400 mt-1">Ingest raw matrix customer export sheets cleanly with instant formatting scrubbers</p>
+                        <p id="audience-subtitle-node" class="text-xs text-slate-400 mt-1">Ingest raw customer export sheets safely inside local memory structures</p>
                     </div>
 
-                    <div id="dropzone-box" class="border-2 border-dashed border-slate-800 hover:border-emerald-500/60 rounded-2xl p-10 text-center bg-[#070a13] relative group theme-transition">
-                        <input type="file" id="excelFile" accept=".xlsx, .xls, .csv" onchange="processExcelFile(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-                        <div class="space-y-3">
-                            <div class="text-4xl group-hover:scale-110 transition duration-150">📥</div>
-                            <div id="dropzone-text" class="text-xs font-bold text-slate-200">Drop Shopify .xlsx or .csv Sheet Here</div>
-                            <p class="text-[10px] text-slate-500 max-w-xs mx-auto">The internal engine automatically maps contact records securely inside local system memory loops.</p>
-                            <div class="inline-block bg-[#0d1324] px-4 py-1.5 rounded-lg text-[10px] border border-slate-800 text-emerald-400 font-bold tracking-wide theme-transition">Browse Local Drive</div>
+                    <div id="dropzone-box" class="border-2 border-dashed border-slate-800 rounded-2xl p-8 text-center bg-[#070a13] relative theme-transition">
+                        <div class="space-y-4">
+                            <div class="text-4xl">📥</div>
+                            <div id="dropzone-text" class="text-xs font-bold text-slate-200">Select Your Shopify Export Spreadsheet</div>
+                            <p class="text-[10px] text-slate-500 max-w-xs mx-auto">Upload any local spreadsheet file. This system captures the data array cleanly via a reference listener check.</p>
+                            
+                            <div class="max-w-xs mx-auto pt-2">
+                                <input type="file" id="excelFile" accept=".xlsx, .xls, .csv" class="w-full bg-[#0d1324] border border-slate-800 text-slate-300 rounded-lg p-2 text-xs font-semibold focus:outline-none focus:border-emerald-500 theme-transition">
+                            </div>
                         </div>
                     </div>
 
@@ -211,7 +167,6 @@
                     </div>
                 </div>
 
-                <!-- SECTION 3: SYSTEM SECURE OPT-OUT MEMORY BLOCK LIST CORE PANEL -->
                 <div id="unsubscribe-tab" class="space-y-6 hidden">
                     <div>
                         <h2 id="blacklist-title-node" class="text-lg font-black text-white tracking-tight flex items-center gap-2"><span class="text-rose-400">03 /</span> Local Unsubscribe Registry</h2>
@@ -237,7 +192,6 @@
                     </div>
                 </div>
 
-                <!-- SECTION 4: COURIER DELIVERY PIPELINE INTEGRATION DISPATCH NODES -->
                 <div id="review-tab" class="space-y-6 hidden">
                     <div>
                         <h2 id="dispatch-title-node" class="text-lg font-black text-white tracking-tight flex items-center gap-2"><span class="text-emerald-400">04 /</span> Secure Channel Dispatch Core</h2>
@@ -246,14 +200,14 @@
 
                     <div id="gateway-credentials-box" class="space-y-3 p-4 bg-[#070a13] border border-slate-800/60 rounded-xl theme-transition">
                         <input type="password" id="apiAuthKey" placeholder="Resend API Token Key (re_xxxx)" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
-                        <input type="email" id="senderIdentity" value="lookbook@yourboutique.com" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
-                        <input type="text" id="footerAddress" value="Premium Eyewear Design Group, London, UK" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
+                        <input type="email" id="senderIdentity" placeholder="Enter sender email address" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
+                        <input type="text" id="footerAddress" placeholder="Enter company name and address" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
                     </div>
 
                     <div id="dispatch-summary-card" class="bg-[#070a13] border border-slate-800/80 rounded-xl p-4 space-y-2.5 shadow-inner theme-transition">
                         <div class="flex items-center justify-between text-xs"><span class="text-slate-400">Scrubbed Target Records:</span><span id="finalTargetDisplay" class="font-bold text-white mono">0 Targets Loaded</span></div>
                         <div class="flex items-center justify-between text-xs"><span class="text-slate-400">Structural Core Blueprint:</span><span id="finalTemplateDisplay" class="font-bold text-emerald-400 mono">Catalog Showcase Grid Layout</span></div>
-                        <button onclick="executeBulkBlastTransmission()" id="blastTriggerBtn" class="w-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-black text-xs uppercase tracking-wider py-4 px-4 rounded-xl shadow-xl transition-all duration-200 block text-center cursor-pointer glow-btn">⚡ INITIALIZE COMPLIANT COURIER DISPATCH BLAST</button>
+                        <button onclick="executeBulkBlastTransmission()" id="blastTriggerBtn" class="w-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-black text-xs uppercase tracking-wider py-4 px-4 rounded-xl shadow-xl block text-center cursor-pointer glow-btn">⚡ INITIALIZE COMPLIANT COURIER DISPATCH BLAST</button>
                     </div>
 
                     <div id="dispatchConsoleLog" class="p-4 bg-[#070a13] rounded-xl border border-slate-900/80 hidden space-y-3 theme-transition">
@@ -264,22 +218,18 @@
                 </div>
             </div>
 
-            <!-- ================= SYSTEM COMPLIANCE PROTECTIVE FOOTER BLOCK ================= -->
             <footer id="app-footer" class="mt-8 pt-4 border-t border-slate-800/80 text-center theme-transition">
                 <div id="licensing-footer-card" class="bg-slate-950/60 rounded-xl p-3 border border-slate-800/50 shadow-inner theme-transition">
                     <div id="licensing-footer-title" class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1 flex items-center justify-center gap-1.5">
                         <span class="text-amber-500/80 text-xs">🔒</span> Proprietary Software License Notice
                     </div>
                     <p class="text-[9px] text-slate-500 leading-normal max-w-xs mx-auto font-medium">
-                        The whole and sole architecture, operational scripts, and codebase of this application are strictly proprietary to <strong class="text-slate-300" id="licensing-author">Rujuta Sawant</strong>. 
-                        Selling, modifying, decompiling, or re-distributing this asset without express written consent is strictly prohibited by digital asset protective law frameworks.
+                        The whole and sole architecture, operational scripts, and codebase of this application are strictly proprietary to <strong class="text-slate-300" id="licensing-author">Rujuta Sawant</strong>.Modification or re-selling is strictly prohibited.
                     </p>
                 </div>
             </footer>
-
         </section>
 
-        <!-- ================= RIGHT SIDE MONITOR PREVIEW INTERACTIVE CANVAS ================= -->
         <section id="preview-panel-box" class="lg:col-span-7 bg-[#0d1324] border border-slate-800 rounded-2xl p-7 shadow-2xl space-y-4 theme-transition">
             <div class="flex items-center justify-between border-b border-slate-800/80 pb-4">
                 <div>
@@ -295,498 +245,14 @@
 
             <div id="canvas-inner-bg" class="bg-[#070a13] p-6 rounded-xl border border-slate-800/40 overflow-x-auto shadow-inner theme-transition">
                 <div id="liveEmailCanvasFrame" class="w-full max-w-[600px] mx-auto shadow-2xl rounded-xl overflow-hidden transition-all duration-200">
-                    <!-- Target compilation engine updates raw data strings code live inside here -->
-                </div>
+                    </div>
             </div>
         </section>
-
     </main>
 
-    <!-- Unified Dashboard Operational JavaScript Engine Core Logic Systems -->
-    <script>
-        let currentActiveTab = 'design-tab';
-        let currentSelectedTemplateType = 'grid';
-        let isDarkModeActive = true; // State tracker for layout theme switching operations
-        
-        let rawUploadedEmailsArray = [];
-        let scrubbedFilteredEmailsArray = [];
-        let globalSystemBlacklistSet = new Set();
-
-        let globalProductCardsDatabaseArray = [
-            { id: 1, title: "Men's Classic Aviators", category: "men", img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80", url: "https://yourstore.com/mens-aviators" },
-            { id: 2, title: "Men's Luxury Wayfarer", category: "men", img: "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80", url: "https://yourstore.com/mens-wayfarer" },
-            { id: 3, title: "Women's Cat-Eye Luxury", category: "women", img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80", url: "https://yourstore.com/womens-cateye" },
-            { id: 4, title: "Women's Summer Oversized", category: "women", img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=600&q=80", url: "https://yourstore.com/womens-oversized" }
-        ];
-
-        function initAppEngine() {
-            const savedOptOutsData = localStorage.getItem('optimail_blacklist_v4');
-            if(savedOptOutsData) {
-                const parsedCollection = JSON.parse(savedOptOutsData);
-                globalSystemBlacklistSet = new Set(parsedCollection);
-                document.getElementById('blacklistInput').value = parsedCollection.join('\n');
-            }
-            refreshBlacklistUIBoards();
-            renderControlPanelProductCardsFormFields();
-            updatePreview();
-        }
-
-        // Global Day / Night Visual Interface Toggle Routing System Engine
-        function toggleGlobalAppThemeMode() {
-            isDarkModeActive = !isDarkModeActive;
-            
-            const bodyNode = document.getElementById('app-body');
-            const headerNode = document.getElementById('app-header');
-            const tabsNode = document.getElementById('tabs-wrapper');
-            const controlPanelNode = document.getElementById('control-panel-box');
-            const previewPanelNode = document.getElementById('preview-panel-box');
-            const presetsScroller = document.getElementById('presets-scroller');
-            const customCanvasNode = document.getElementById('custom-canvas-controls');
-            const tuningNode = document.getElementById('tuning-wrapper-box');
-            const headersNode = document.getElementById('headers-wrapper-box');
-            const dropzoneNode = document.getElementById('dropzone-box');
-            const metadataNode = document.getElementById('listMetaStatus');
-            const blacklistNode = document.getElementById('blacklist-summary-card');
-            const gatewayNode = document.getElementById('gateway-credentials-box');
-            const dispatchSummaryNode = document.getElementById('dispatch-summary-card');
-            const consoleNode = document.getElementById('dispatchConsoleLog');
-            const footerCardNode = document.getElementById('licensing-footer-card');
-            const dotsNode = document.getElementById('mock-browser-dots');
-            const canvasInnerBgNode = document.getElementById('canvas-inner-bg');
-
-            const themeIcon = document.getElementById('theme-icon');
-            const themeLabel = document.getElementById('theme-label');
-
-            if (!isDarkModeActive) {
-                // APPLICATE PREMIUM LIGHT EXECUTIVE SUITE INTERFACE
-                themeIcon.innerText = "🌙";
-                themeLabel.innerText = "Night Mode";
-
-                bodyNode.className = "bg-[#f0f4f8] text-slate-800 min-h-screen antialiased selection:bg-emerald-500/30 selection:text-emerald-600 theme-transition";
-                headerNode.className = "bg-white/90 backdrop-blur-md border-b border-slate-200 px-8 py-5 sticky top-0 z-50 flex flex-wrap gap-6 items-center justify-between shadow-sm theme-transition";
-                tabsNode.className = "flex items-center bg-slate-100 p-1.5 rounded-xl border border-slate-200 shadow-inner theme-transition";
-                controlPanelNode.className = "lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-7 shadow-xl flex flex-col justify-between min-h-[800px] theme-transition";
-                previewPanelNode.className = "lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-7 shadow-xl space-y-4 theme-transition";
-                
-                document.getElementById('brand-title').className = "text-xl font-extrabold tracking-tight text-slate-900";
-                document.getElementById('brand-subtitle').className = "text-xs text-slate-500 mt-0.5";
-                document.getElementById('design-title-node').className = "text-lg font-black text-slate-900 tracking-tight flex items-center gap-2";
-                document.getElementById('design-subtitle-node').className = "text-xs text-slate-500 mt-1";
-                document.getElementById('audience-title-node').className = "text-lg font-black text-slate-900 tracking-tight flex items-center gap-2";
-                document.getElementById('audience-subtitle-node').className = "text-xs text-slate-500 mt-1";
-                document.getElementById('blacklist-title-node').className = "text-lg font-black text-slate-900 tracking-tight flex items-center gap-2";
-                document.getElementById('blacklist-subtitle-node').className = "text-xs text-slate-500 mt-1";
-                document.getElementById('dispatch-title-node').className = "text-lg font-black text-slate-900 tracking-tight flex items-center gap-2";
-                document.getElementById('dispatch-subtitle-node').className = "text-xs text-slate-500 mt-1";
-                document.getElementById('preview-title-node').className = "text-sm font-bold text-slate-900 tracking-wide";
-                document.getElementById('preview-subtitle-node').className = "text-[11px] text-slate-500 mt-0.5";
-                document.getElementById('asset-block-title').className = "text-xs font-bold uppercase tracking-widest text-slate-500";
-                document.getElementById('licensing-footer-title').className = "text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1 flex items-center justify-center gap-1.5";
-                document.getElementById('licensing-author').className = "text-slate-800 font-bold";
-
-                // Map auxiliary interior modules to clean greyscale panels
-                const subContainersList = [presetsScroller, customCanvasNode, tuningNode, headersNode, dropzoneNode, metadataNode, blacklistNode, gatewayNode, dispatchSummaryNode, consoleNode, footerCardNode, dotsNode, canvasInnerBgNode];
-                subContainersList.forEach(node => {
-                    if(node) node.style.backgroundColor = "#f8fafc";
-                    if(node) node.style.borderColor = "#e2e8f0";
-                });
-                
-                document.getElementById('dropzone-text').className = "text-xs font-bold text-slate-800";
-            } else {
-                // REVERT RESTORE CYBERPUNK DARK NEON ARCHITECTURE
-                themeIcon.innerText = "☀️";
-                themeLabel.innerText = "Day Mode";
-
-                bodyNode.className = "bg-[#070a13] text-slate-100 min-h-screen antialiased selection:bg-emerald-500/30 selection:text-emerald-400 theme-transition";
-                headerNode.className = "bg-[#0d1324]/80 backdrop-blur-md border-b border-slate-800/80 px-8 py-5 sticky top-0 z-50 flex flex-wrap gap-6 items-center justify-between shadow-2xl theme-transition";
-                tabsNode.className = "flex items-center bg-[#070a13] p-1.5 rounded-xl border border-slate-800/60 shadow-inner theme-transition";
-                controlPanelNode.className = "lg:col-span-5 bg-[#0d1324] border border-slate-800 rounded-2xl p-7 shadow-2xl glow-emerald flex flex-col justify-between min-h-[800px] theme-transition";
-                previewPanelNode.className = "lg:col-span-7 bg-[#0d1324] border border-slate-800 rounded-2xl p-7 shadow-2xl space-y-4 theme-transition";
-                
-                document.getElementById('brand-title').className = "text-xl font-extrabold tracking-tight text-white";
-                document.getElementById('brand-subtitle').className = "text-xs text-slate-400 mt-0.5";
-                document.getElementById('design-title-node').className = "text-lg font-black text-white tracking-tight flex items-center gap-2";
-                document.getElementById('design-subtitle-node').className = "text-xs text-slate-400 mt-1";
-                document.getElementById('audience-title-node').className = "text-lg font-black text-white tracking-tight flex items-center gap-2";
-                document.getElementById('audience-subtitle-node').className = "text-xs text-slate-400 mt-1";
-                document.getElementById('blacklist-title-node').className = "text-lg font-black text-white tracking-tight flex items-center gap-2";
-                document.getElementById('blacklist-subtitle-node').className = "text-xs text-slate-400 mt-1";
-                document.getElementById('dispatch-title-node').className = "text-lg font-black text-white tracking-tight flex items-center gap-2";
-                document.getElementById('dispatch-subtitle-node').className = "text-xs text-slate-400 mt-1";
-                document.getElementById('preview-title-node').className = "text-sm font-bold text-white tracking-wide";
-                document.getElementById('preview-subtitle-node').className = "text-[11px] text-slate-400 mt-0.5";
-                document.getElementById('asset-block-title').className = "text-xs font-bold uppercase tracking-widest text-slate-400";
-                document.getElementById('licensing-footer-title').className = "text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1 flex items-center justify-center gap-1.5";
-                document.getElementById('licensing-author').className = "text-slate-300";
-
-                const subContainersList = [presetsScroller, customCanvasNode, tuningNode, headersNode, dropzoneNode, metadataNode, blacklistNode, gatewayNode, dispatchSummaryNode, consoleNode, footerCardNode, dotsNode, canvasInnerBgNode];
-                subContainersList.forEach(node => {
-                    if(node) node.style.backgroundColor = "#070a13";
-                    if(node) node.style.borderColor = "#1e293b";
-                });
-                
-                document.getElementById('dropzone-text').className = "text-xs font-bold text-slate-200";
-            }
-
-            // Sync visual button state triggers to retain visibility properties parameters smoothly
-            setTemplate(currentSelectedTemplateType);
-            renderControlPanelProductCardsFormFields();
-        }
-
-        function addNewProductCardRecordObject() {
-            const dynamicNewId = Date.now();
-            globalProductCardsDatabaseArray.push({
-                id: dynamicNewId,
-                title: "New Premium Frame Design",
-                category: "arrivals",
-                img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=600&q=80",
-                url: "https://yourstore.com/new-arrivals"
-            });
-            renderControlPanelProductCardsFormFields();
-            updatePreview();
-        }
-
-        function removeProductCardRecordObject(targetId) {
-            globalProductCardsDatabaseArray = globalProductCardsDatabaseArray.filter(card => card.id !== targetId);
-            renderControlPanelProductCardsFormFields();
-            updatePreview();
-        }
-
-        function updateProductCardDataField(targetId, objectKey, elementValue) {
-            const matchedCardIndex = globalProductCardsDatabaseArray.findIndex(card => card.id === targetId);
-            if(matchedCardIndex !== -1) {
-                globalProductCardsDatabaseArray[matchedCardIndex][objectKey] = elementValue;
-                updatePreview();
-            }
-        }
-
-        function renderControlPanelProductCardsFormFields() {
-            const containerNode = document.getElementById('dynamic-cards-input-list-container');
-            containerNode.innerHTML = "";
-
-            const rowBgStyleHex = isDarkModeActive ? "#070a13" : "#ffffff";
-            const rowBorderStyleHex = isDarkModeActive ? "#1e293b" : "#cbd5e1";
-            const innerInputBgHex = isDarkModeActive ? "#0d1324" : "#f1f5f9";
-            const fontTitleHex = isDarkModeActive ? "#ffffff" : "#1e293b";
-
-            globalProductCardsDatabaseArray.forEach((card, pointerIndex) => {
-                const fieldsWrapperNode = document.createElement('div');
-                fieldsWrapperNode.className = "p-4 rounded-xl space-y-2 relative border theme-transition";
-                fieldsWrapperNode.style.backgroundColor = rowBgStyleHex;
-                fieldsWrapperNode.style.borderColor = rowBorderStyleHex;
-                
-                fieldsWrapperNode.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-800/20 pb-1.5">
-                        <span class="text-[10px] font-bold text-emerald-500">DYNAMIC GLASSES MODULE FRAME #${pointerIndex + 1}</span>
-                        <button onclick="removeProductCardRecordObject(${card.id})" class="text-[9px] text-rose-500 hover:text-rose-400 transition font-bold cursor-pointer">[🗑️ Remove]</button>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <input type="text" value="${card.title}" placeholder="Product Title" oninput="updateProductCardDataField(${card.id}, 'title', this.value)" style="background-color: ${innerInputBgHex}; color: ${fontTitleHex};" class="col-span-2 border border-slate-300/10 rounded p-1.5 text-xs">
-                        <select onchange="updateProductCardDataField(${card.id}, 'category', this.value)" style="background-color: ${innerInputBgHex};" class="border border-slate-300/10 text-slate-500 rounded text-[10px] px-1 focus:outline-none">
-                            <option value="men" ${card.category === 'men' ? 'selected' : ''}>Men's</option>
-                            <option value="women" ${card.category === 'women' ? 'selected' : ''}>Women's</option>
-                            <option value="arrivals" ${card.category === 'arrivals' ? 'selected' : ''}>New Arrivals</option>
-                        </select>
-                    </div>
-                    <input type="text" value="${card.img}" placeholder="Image Direct Source Link (.jpg / .png)" oninput="updateProductCardDataField(${card.id}, 'img', this.value)" style="background-color: ${innerInputBgHex};" class="w-full border border-slate-300/10 rounded p-1.5 text-[11px] font-mono text-slate-400">
-                    <input type="text" value="${card.url}" placeholder="Redirect E-Store Target Link" oninput="updateProductCardDataField(${card.id}, 'url', this.value)" style="background-color: ${innerInputBgHex};" class="w-full border border-slate-300/10 rounded p-1.5 text-[11px] font-mono text-slate-400">
-                `;
-                containerNode.appendChild(fieldsWrapperNode);
-            });
-        }
-
-        function setTemplate(templateType) {
-            currentSelectedTemplateType = templateType;
-            const presetsIdsList = ['tpl-grid', 'tpl-hero', 'tpl-split', 'tpl-arrivals', 'tpl-custom'];
-            
-            presetsIdsList.forEach(id => {
-                const node = document.getElementById(id);
-                if (node) {
-                    node.style.borderWidth = "1px";
-                    node.style.borderColor = isDarkModeActive ? "#1e293b" : "#cbd5e1";
-                }
-            });
-
-            const activeNode = document.getElementById(`tpl-${templateType}`);
-            if (activeNode) {
-                activeNode.style.borderWidth = "2px";
-                activeNode.style.borderColor = "#10b981";
-            }
-
-            const customControlsNode = document.getElementById('custom-canvas-controls');
-            if(templateType === 'custom') {
-                customControlsNode.classList.remove('hidden');
-                document.getElementById('finalTemplateDisplay').innerText = "The Bespoke Unlocked Canvas Suite";
-            } else {
-                customControlsNode.classList.add('hidden');
-                document.getElementById('finalTemplateDisplay').innerText = `${templateType.toUpperCase()} Engine Grid Preset`;
-            }
-
-            updatePreview();
-        }
-
-        function generateCompiledEmailHtmlBodySource() {
-            const accentHexColor = document.getElementById('styleColor').value;
-            const roundingRadiusPx = document.getElementById('styleRadius').value;
-            const headingFontPtScale = document.getElementById('styleTextSize').value;
-            const headBannerCopyText = document.getElementById('mainHeadline').value;
-            const subheadBannerCopyText = document.getElementById('mainSubhead').value;
-            const corporateTradingAddress = document.getElementById('footerAddress').value;
-            const verifiedSenderFromEmail = document.getElementById('senderIdentity').value;
-
-            document.getElementById('styleColorHex').value = accentHexColor.toUpperCase();
-
-            let masterContainerCanvasBgColor = "#ffffff";
-            let globalTypographyStackTree = "-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif";
-
-            if(currentSelectedTemplateType === 'custom') {
-                masterContainerCanvasBgColor = document.getElementById('customBgColor').value;
-                globalTypographyStackTree = document.getElementById('customFontFamily').value;
-            }
-
-            let renderedHtmlPayloadStream = `
-                <div style="background-color: #f8fafc; padding: 28px 14px; font-family: ${globalTypographyStackTree}; color: #1e293b; margin: 0;">
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: ${masterContainerCanvasBgColor}; border-radius: ${roundingRadiusPx}; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.03); border-collapse: collapse;">
-                        <tr>
-                            <td style="padding: 40px 32px; text-align: center; background-color: #0b0f19;">
-                                <div style="font-size: 11px; font-weight: 800; color: ${accentHexColor}; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;">PREMIUM LOOKBOOK COMPOSITION</div>
-                                <h1 style="color: #ffffff; font-size: ${headingFontPtScale}; font-weight: 800; margin: 0; line-height: 1.25; text-transform: uppercase;">${headBannerCopyText}</h1>
-                                <p style="color: #94a3b8; font-size: 13px; line-height: 1.6; margin: 16px 0 0 0;">${subheadBannerCopyText}</p>
-                            </td>
-                        </tr>
-                        <tr><td style="padding: 20px 14px; background-color: ${masterContainerCanvasBgColor};">
-            `;
-
-            if(currentSelectedTemplateType === 'grid') {
-                renderedHtmlPayloadStream += `<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;"><tr>`;
-                globalProductCardsDatabaseArray.forEach((card, index) => {
-                    if(index > 0 && index % 2 === 0) renderedHtmlPayloadStream += `</tr><tr>`;
-                    renderedHtmlPayloadStream += `
-                        <td width="50%" style="padding: 8px; vertical-align: top;">
-                            <a href="${card.url}" target="_blank" style="text-decoration: none; display: block; background-color: #f8fafc; border-radius: ${roundingRadiusPx}; overflow: hidden; border: 1px solid #e2e8f0; text-align: center;">
-                                <img src="${card.img}" style="width: 100%; height: 150px; object-fit: cover; display: block;">
-                                <div style="padding: 12px 8px; font-size: 12px; font-weight: 700; color: #0f172a; line-height:1.3;">${card.title}</div>
-                                <div style="padding: 0 8px 12px 8px; font-size: 10px; font-weight: 700; color: ${accentHexColor}; text-transform: uppercase;">Shop Glasses ➜</div>
-                            </a>
-                        </td>`;
-                });
-                renderedHtmlPayloadStream += `</tr></table>`;
-
-            } else if (currentSelectedTemplateType === 'hero') {
-                const fallbackHeroCard = globalProductCardsDatabaseArray[0] || { img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=1200&q=80", url: "#", title: "Premium Collection Launch" };
-                renderedHtmlPayloadStream += `
-                    <div style="padding: 6px;">
-                        <a href="${fallbackHeroCard.url}" target="_blank" style="text-decoration: none; display: block; overflow: hidden; border-radius: ${roundingRadiusPx}; border: 1px solid #e2e8f0; background: #ffffff;">
-                            <img src="${fallbackHeroCard.img}" style="width: 100%; height: auto; display: block;">
-                            <div style="padding: 24px; text-align: center; background-color: #ffffff;">
-                                <div style="font-size: 15px; font-weight: 800; color: #0b0f19; margin-bottom: 8px; text-transform: uppercase;">${fallbackHeroCard.title}</div>
-                                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
-                                    <tr><td align="center" style="background-color: ${accentHexColor}; border-radius: 4px;"><span style="display: inline-block; padding: 12px 24px; color: #ffffff; font-size: 12px; font-weight: 700; text-decoration: none;">EXPLORE EXCLUSIVE ACCESS ➜</span></td></tr>
-                                </table>
-                            </div>
-                        </a>
-                    </div>`;
-
-            } else if (currentSelectedTemplateType === 'split') {
-                const mensFramesList = globalProductCardsDatabaseArray.filter(c => c.category === 'men');
-                const womensFramesList = globalProductCardsDatabaseArray.filter(c => c.category === 'women');
-
-                renderedHtmlPayloadStream += `<div style="padding: 10px 8px; font-size: 12px; font-weight: 800; color: #0b0f19; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid #0b0f19; margin-bottom: 10px;">EXPLORE MEN'S EXCLUSIVE SELECTION</div>`;
-                renderedHtmlPayloadStream += `<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; margin-bottom: 24px;"><tr>`;
-                mensFramesList.forEach(card => {
-                    renderedHtmlPayloadStream += `
-                        <td width="50%" style="padding: 6px; vertical-align: top;">
-                            <a href="${card.url}" target="_blank" style="text-decoration: none; display: block; background-color: #ffffff; text-align: center;">
-                                <img src="${card.img}" style="width: 100%; height: 130px; object-fit: cover; border-radius: ${roundingRadiusPx};">
-                                <div style="padding: 8px 4px; font-size: 11px; font-weight: 700; color: #1e293b;">${card.title}</div>
-                            </a>
-                        </td>`;
-                });
-                renderedHtmlPayloadStream += `</tr></table>`;
-
-                renderedHtmlPayloadStream += `<div style="padding: 10px 8px; font-size: 12px; font-weight: 800; color: #0b0f19; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid #0b0f19; margin-bottom: 10px;">EXPLORE WOMEN'S LUXURY LOOKS</div>`;
-                renderedHtmlPayloadStream += `<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;"><tr>`;
-                womensFramesList.forEach(card => {
-                    renderedHtmlPayloadStream += `
-                        <td width="50%" style="padding: 6px; vertical-align: top;">
-                            <a href="${card.url}" target="_blank" style="text-decoration: none; display: block; background-color: #ffffff; text-align: center;">
-                                <img src="${card.img}" style="width: 100%; height: 130px; object-fit: cover; border-radius: ${roundingRadiusPx};">
-                                <div style="padding: 8px 4px; font-size: 11px; font-weight: 700; color: #1e293b;">${card.title}</div>
-                            </a>
-                        </td>`;
-                });
-                renderedHtmlPayloadStream += `</tr></table>`;
-
-            } else if (currentSelectedTemplateType === 'arrivals') {
-                const arrivalsFramesList = globalProductCardsDatabaseArray.filter(c => c.category === 'arrivals');
-                renderedHtmlPayloadStream += `<div style="padding: 0 6px 12px 6px; font-size: 13px; font-weight: 800; color: ${accentHexColor}; text-transform: uppercase; text-align: center;">✨ BRAND NEW ARRIVALS & TREND CONTEXT SELECTIONS ✨</div>`;
-                
-                arrivalsFramesList.forEach((card, stepIdx) => {
-                    const toggleRowOrientationFlag = stepIdx % 2 === 0;
-                    renderedHtmlPayloadStream += `
-                        <div style="margin-bottom: 16px; padding: 6px;">
-                            <a href="${card.url}" target="_blank" style="text-decoration: none; display: block; background-color: #f8fafc; border-radius: ${roundingRadiusPx}; border: 1px solid #e2e8f0; overflow: hidden;">
-                                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-                                    <tr>
-                                        ${toggleRowOrientationFlag ? `
-                                        <td width="40%"><img src="${card.img}" style="width: 100%; height: 120px; object-fit: cover; display: block;"></td>
-                                        <td width="60%" style="padding: 16px; vertical-align: middle;">
-                                            <div style="font-size: 13px; font-weight: 800; color: #0b0f19; margin-bottom: 4px;">${card.title}</div>
-                                            <div style="font-size: 11px; font-weight: 600; color: ${accentHexColor};">EXPLORE ARRIVAL SPACE ➜</div>
-                                        </td>` : `
-                                        <td width="60%" style="padding: 16px; vertical-align: middle; text-align: right;">
-                                            <div style="font-size: 13px; font-weight: 800; color: #0b0f19; margin-bottom: 4px;">${card.title}</div>
-                                            <div style="font-size: 11px; font-weight: 600; color: ${accentHexColor};">EXPLORE ARRIVAL SPACE ➜</div>
-                                        </td>
-                                        <td width="40%"><img src="${card.img}" style="width: 100%; height: 120px; object-fit: cover; display: block;"></td>`}
-                                    </tr>
-                                </table>
-                            </a>
-                        </div>`;
-                });
-                if(arrivalsFramesList.length === 0) {
-                    renderedHtmlPayloadStream += `<p style="text-align: center; font-size:11px; color:#94a3b8; padding: 20px;">No product modules set to 'New Arrivals' category mapping currently.</p>`;
-                }
-
-            } else if (currentSelectedTemplateType === 'custom') {
-                globalProductCardsDatabaseArray.forEach(card => {
-                    renderedHtmlPayloadStream += `
-                        <div style="margin-bottom: 14px; padding: 8px; background-color: #ffffff; border: 1px dashed ${accentHexColor}; border-radius: ${roundingRadiusPx}; overflow: hidden;">
-                            <a href="${card.url}" target="_blank" style="text-decoration: none; display: block;">
-                                <img src="${card.img}" style="width: 100%; height: auto; max-height: 250px; object-fit: cover; display: block; border-radius: ${roundingRadiusPx}; margin-bottom: 10px;">
-                                <div style="font-size: 14px; font-weight: 800; color: #0b0f19; text-align: center; margin-bottom: 4px; text-transform: uppercase;">${card.title}</div>
-                                <div style="font-size: 11px; font-weight: 700; color: ${accentHexColor}; text-align: center;">[ CATEGORY: ${card.category.toUpperCase()} ]</div>
-                            </a>
-                        </div>`;
-                });
-            }
-
-            renderedHtmlPayloadStream += `
-                            </td></tr>
-                        <tr>
-                            <td style="padding: 36px 32px; background-color: #f8fafc; text-align: center; border-top: 1px solid #f1f5f9;">
-                                <div style="font-size: 11px; color: #64748b; line-height: 1.7;">
-                                    You received this lookbook update because you are registered as an active retail client profile within our Shopify digital storefront system node.
-                                    <br><br><strong>Registered Trading Headquarters:</strong><br>${corporateTradingAddress}<br><br>
-                                    If these styling digests no longer match your design goals, you can securely trigger profile removal below:<br>
-                                    <a href="mailto:${verifiedSenderFromEmail}?subject=UNSUBSCRIBE-REQUEST-SECURE" target="_blank" style="color: #ef4444; font-weight: 700; text-decoration: underline; display: inline-block; margin-top: 8px; border: 1px solid #fee2e2; background-color: #fef2f2; padding: 6px 14px; border-radius: 6px;"> Click Here Unsubscribe</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            `;
-            return renderedHtmlPayloadStream;
-        }
-
-        function updatePreview() { const canvasFrame = document.getElementById('liveEmailCanvasFrame'); canvasFrame.innerHTML = generateCompiledEmailHtmlBodySource(); }
-
-        function processExcelFile(event) {
-            const inputElement = event.target; if (!inputElement.files.length) return;
-            const fileInstance = inputElement.files[0]; const readerStream = new FileReader();
-            readerStream.onload = function(e) {
-                const arrayBuffer = new Uint8Array(e.target.result); const parsedWorkbook = XLSX.read(arrayBuffer, { type: 'array' });
-                const mainSheetName = parsedWorkbook.SheetNames[0]; const rawSheetObject = parsedWorkbook.Sheets[mainSheetName];
-                const jsonGridMatrixRows = XLSX.utils.sheet_to_json(rawSheetObject, { header: 1 });
-                let targetEmailColumnIndex = -1; rawUploadedEmailsArray = [];
-                if(jsonGridMatrixRows.length > 0) {
-                    const structuralHeaderRowColumns = jsonGridMatrixRows[0];
-                    for(let colIndex = 0; colIndex < structuralHeaderRowColumns.length; colIndex++) {
-                        const cellTextLower = String(structuralHeaderRowColumns[colIndex]).toLowerCase().trim();
-                        if(cellTextLower.includes('email') || cellTextLower === 'mail' || cellTextLower === 'e-mail') { targetEmailColumnIndex = colIndex; break; }
-                    }
-                    if(targetEmailColumnIndex === -1) targetEmailColumnIndex = 0;
-                    for(let r = 1; r < jsonGridMatrixRows.length; r++) {
-                        const emailCellValue = jsonGridMatrixRows[r][targetEmailColumnIndex];
-                        if(emailCellValue && String(emailCellValue).includes('@')) { rawUploadedEmailsArray.push(String(emailCellValue).trim().toLowerCase()); }
-                    }
-                }
-                applyAntiSpamScrubbingFilter();
-            };
-            readerStream.readAsArrayBuffer(fileInstance);
-        }
-
-        function applyAntiSpamScrubbingFilter() {
-            if(rawUploadedEmailsArray.length === 0) return;
-            scrubbedFilteredEmailsArray = rawUploadedEmailsArray.filter(email => !globalSystemBlacklistSet.has(email));
-            const totalRemovedScrubCount = rawUploadedEmailsArray.length - scrubbedFilteredEmailsArray.length;
-            const feedbackBox = document.getElementById('scrubFeedbackBox');
-            if(totalRemovedScrubCount > 0) {
-                document.getElementById('scrubFeedbackText').innerText = `Security scrubbing match: ${totalRemovedScrubCount} blacklisted email(s) automatically filtered out completely.`;
-                feedbackBox.classList.remove('hidden');
-            } else { feedbackBox.classList.add('hidden'); }
-            document.getElementById('listMetaStatus').classList.remove('hidden');
-            document.getElementById('totalTargetCount').innerText = `${scrubbedFilteredEmailsArray.length} Clean Contacts`;
-            document.getElementById('finalTargetDisplay').innerText = `${scrubbedFilteredEmailsArray.length} Profiles Cleared`;
-            document.getElementById('sampleEmailsList').innerText = scrubbedFilteredEmailsArray.slice(0, 15).join('\n') + (scrubbedFilteredEmailsArray.length > 15 ? '\n...and ' + (scrubbedFilteredEmailsArray.length - 15) + ' more profiles' : '');
-        }
-
-        function saveBlacklistData() {
-            const rawInputString = document.getElementById('blacklistInput').value;
-            const parsedArray = rawInputString.split(/[\n,]+/).map(item => item.trim().toLowerCase()).filter(item => item.length > 0 && item.includes('@'));
-            globalSystemBlacklistSet = new Set(parsedArray); localStorage.setItem('optimail_blacklist_v4', JSON.stringify(parsedArray));
-            refreshBlacklistUIBoards(); applyAntiSpamScrubbingFilter();
-            alert("System Core Memory updated. Total " + parsedArray.length + " addresses locked into local database blacklist successfully.");
-        }
-
-        function refreshBlacklistUIBoards() {
-            const totalCount = globalSystemBlacklistSet.size; document.getElementById('blacklistTotalLabel').innerText = `${totalCount} Registered Targets`;
-            const badge = document.getElementById('blacklistBadge');
-            if(totalCount > 0) { badge.innerText = totalCount; badge.classList.remove('hidden'); } else { badge.classList.add('hidden'); }
-            const arrayFromSet = Array.from(globalSystemBlacklistSet);
-            document.getElementById('blacklistCollectionDisplay').innerText = totalCount > 0 ? arrayFromSet.slice(0, 30).join('\n') + (totalCount > 30 ? '\n...and ' + (totalCount - 30) + ' more records' : '') : "No active opt-outs recorded.";
-        }
-
-        function switchTab(targetTabId) {
-            document.getElementById(currentActiveTab).classList.add('hidden');
-            document.getElementById(`btn-${currentActiveTab}`).className = "px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-lg text-slate-400 hover:text-slate-200 transition-all duration-200 cursor-pointer";
-            document.getElementById(targetTabId).classList.remove('hidden');
-            if (targetTabId === 'design-tab') { document.getElementById(`btn-${targetTabId}`).className = "px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-lg bg-emerald-500 text-slate-950 shadow-md transition-all duration-200 cursor-pointer"; } 
-            else if (targetTabId === 'unsubscribe-tab') { document.getElementById(`btn-${targetTabId}`).className = "px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-lg bg-rose-500 text-white shadow-md transition-all duration-200 cursor-pointer"; } 
-            else { document.getElementById(`btn-${targetTabId}`).className = "px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-lg bg-slate-800 text-white border border-slate-700 shadow-md transition-all duration-200 cursor-pointer"; }
-            currentActiveTab = targetTabId;
-        }
-
-        async function executeBulkBlastTransmission() {
-            const apiAuthToken = document.getElementById('apiAuthKey').value.trim(); const verifiedSenderId = document.getElementById('senderIdentity').value.trim(); const subjectTextLine = document.getElementById('subjectLine').value.trim();
-            const consoleWrapper = document.getElementById('dispatchConsoleLog'); const consoleText = document.getElementById('consoleTextOutput'); const consoleBar = document.getElementById('consoleProgressBar');
-            const consoleStatus = document.getElementById('consoleStatusLabel'); const blastBtn = document.getElementById('blastTriggerBtn');
-            if(!apiAuthToken || !verifiedSenderId) { alert("Core configuration arguments missing. Provide API Credentials before firing."); return; }
-            if(scrubbedFilteredEmailsArray.length === 0) { alert("Clean Audience list contains 0 entries. Drop a valid Excel file in Tab 2."); return; }
-            const safetyGuardChecked = confirm(`CRITICAL VERIFICATION BLAST CHECK:\n\nYou are deployment clearing a loop transmission blast for exactly ${scrubbedFilteredEmailsArray.length} scrubbed clean recipient records.\n\nDo you authorize pipeline transmission execution?`);
-            if(!safetyGuardChecked) return;
-
-            blastBtn.disabled = true; blastBtn.innerText = "⚡ EXECUTING TRANSMISSION GRIDS...";
-            consoleWrapper.classList.remove('hidden'); consoleText.innerHTML = ""; consoleBar.style.width = "0%";
-            consoleStatus.className = "text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded font-mono font-bold animate-pulse"; consoleStatus.innerText = "DISPATCHING CAMPAIGN NODE";
-
-            const payloadLayoutCodeContent = generateCompiledEmailHtmlBodySource(); const chunkPacketGroupStepSize = 100; let finalDispatchedEmailCounter = 0;
-            appendLogLine(`[PIPELINE READY] Target arrays checked... Active Blacklist Registry has scrubbed out all matching opt-outs successfully.`);
-
-            for(let blockIndex = 0; blockIndex < scrubbedFilteredEmailsArray.length; blockIndex += chunkPacketGroupStepSize) {
-                const chunkSliceTargetVectorArray = scrubbedFilteredEmailsArray.slice(blockIndex, blockIndex + chunkPacketGroupStepSize);
-                appendLogLine(`Transmitting sub-packet matrix block range [${blockIndex + 1} - ${Math.min(blockIndex + chunkPacketGroupStepSize, scrubbedFilteredEmailsArray.length)}] out to Resend...`);
-                try {
-                    const response = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://api.resend.com/emails'), {
-                        method: 'POST',
-                        headers: { 'Authorization': `Bearer ${apiAuthToken}`, 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ from: verifiedSenderId, to: chunkSliceTargetVectorArray, subject: subjectTextLine, html: payloadLayoutCodeContent })
-                    });
-                    const jsonResponseResult = await response.json();
-                    if(response.ok) {
-                        finalDispatchedEmailCounter += chunkSliceTargetVectorArray.length; const completePercentRatio = Math.round((finalDispatchedEmailCounter / scrubbedFilteredEmailsArray.length) * 100);
-                        consoleBar.style.width = `${completePercentRatio}%`; appendLogLine(`✅ Sub-Packet chunk verified. Server Token ID: ${jsonResponseResult.id}`);
-                    } else { throw new Error(jsonResponseResult.message || "Endpoint server error response."); }
-                } catch (apiErrorConnectionException) { appendLogLine(`❌ PIPELINE EXCEPTION ERROR: ${apiErrorConnectionException.message}`); }
-                await new Promise(resolve => setTimeout(resolve, 300));
-            }
-            blastBtn.disabled = false; blastBtn.innerText = "⚡ INITIALIZE COMPLIANT COURIER DISPATCH BLAST";
-            consoleStatus.className = "text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono font-bold"; consoleStatus.innerText = "TRANSFER FINISHED";
-            appendLogLine(`[COURIER OVERVIEW COMPLETE] System loops closed safely. Total ${finalDispatchedEmailCounter} recipient mailboxes updated.`);
-        }
-
-        function appendLogLine(logTextString) { const consoleText = document.getElementById('consoleTextOutput'); const timeMark = new Date().toLocaleTimeString(); consoleText.innerHTML += `<div><span class="text-slate-600">[${timeMark}]</span> ${logTextString}</div>`; consoleText.scrollTop = consoleText.scrollHeight; }
-        window.onload = initAppEngine;
-    </script>
+    <script src="js/app-state.js"></script>
+    <script src="js/layout-engine.js"></script>
+    <script src="js/dispatch-pipeline.js"></script>
+    <script src="js/view-router.js"></script>
 </body>
 </html>
