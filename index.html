@@ -198,15 +198,85 @@
                         <p id="dispatch-subtitle-node" class="text-xs text-slate-400 mt-1">Connect directly to the authenticated network routing grid node</p>
                     </div>
 
+                    <!-- Resume campaign banner — shown on load if unfinished campaign exists -->
+                    <div id="resumeCampaignBanner" class="hidden items-center gap-3 bg-amber-500/10 border border-amber-500/30 rounded-xl px-4 py-3">
+                        <span class="text-amber-400 text-lg">📋</span>
+                        <div class="flex-1">
+                            <p class="text-xs font-bold text-amber-300">Campaign In Progress</p>
+                            <p id="resumeBannerMsg" class="text-[11px] text-amber-400/80 mt-0.5"></p>
+                        </div>
+                    </div>
+
+                    <!-- Campaign status bar -->
+                    <div id="campaignStatusBar" class="hidden bg-[#070a13] border border-slate-800/60 rounded-xl p-4 space-y-3 theme-transition">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mono">Campaign Progress</span>
+                            <span id="csb-pct" class="text-[10px] font-bold text-emerald-400 mono">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800/40">
+                            <div id="csb-bar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full w-0 transition-all duration-500"></div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="bg-slate-900/60 rounded-lg p-2">
+                                <div class="text-[9px] text-slate-500 uppercase tracking-wide">Total</div>
+                                <div id="csb-total" class="text-sm font-bold text-white mono">0</div>
+                            </div>
+                            <div class="bg-emerald-500/10 rounded-lg p-2">
+                                <div class="text-[9px] text-emerald-600 uppercase tracking-wide">Sent</div>
+                                <div id="csb-sent" class="text-sm font-bold text-emerald-400 mono">0</div>
+                            </div>
+                            <div class="bg-amber-500/10 rounded-lg p-2">
+                                <div class="text-[9px] text-amber-600 uppercase tracking-wide">Pending</div>
+                                <div id="csb-pending" class="text-sm font-bold text-amber-400 mono">0</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-[11px] border-t border-slate-800/60 pt-2">
+                            <span class="text-slate-500">Sent today: <span id="csb-today" class="text-slate-300 font-bold mono">0</span> / <span class="text-slate-300 font-bold mono">100</span></span>
+                            <span class="text-slate-500">Cap remaining: <span id="csb-capleft" class="text-emerald-400 font-bold mono">100</span></span>
+                            <span class="text-slate-500">Can send now: <span id="csb-cannow" class="text-emerald-400 font-bold mono">0</span></span>
+                        </div>
+                        <!-- Cooldown warning -->
+                        <div id="csb-cooldown" class="hidden text-center text-[11px] bg-rose-500/10 border border-rose-500/20 rounded-lg py-2 px-3 text-rose-400 font-medium">
+                            Daily limit reached — come back tomorrow to continue sending.
+                        </div>
+                        <!-- All done -->
+                        <div id="csb-done" class="hidden text-center text-[11px] bg-emerald-500/10 border border-emerald-500/20 rounded-lg py-2 px-3 text-emerald-400 font-medium">
+                            All contacts reached — campaign complete!
+                        </div>
+                        <!-- Action buttons -->
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="downloadProgressReport();" class="text-[10px] font-bold uppercase tracking-widest text-emerald-400/70 hover:text-emerald-400 py-1.5 border border-emerald-500/10 hover:border-emerald-500/30 rounded-lg transition-all duration-200 cursor-pointer">
+                                ↓ Download Progress CSV
+                            </button>
+                            <button onclick="if(confirm('Reset this campaign? This clears all progress and sent history.')) clearCampaignState();" class="text-[10px] font-bold uppercase tracking-widest text-rose-400/60 hover:text-rose-400 py-1.5 border border-rose-500/10 hover:border-rose-500/30 rounded-lg transition-all duration-200 cursor-pointer">
+                                ✕ Reset Campaign
+                            </button>
+                        </div>
+                    </div>
+
                     <div id="gateway-credentials-box" class="space-y-3 p-4 bg-[#070a13] border border-slate-800/60 rounded-xl theme-transition">
-                        <input type="password" id="apiAuthKey" placeholder="Resend API Token Key (re_xxxx)" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
-                        <input type="email" id="senderIdentity" placeholder="Enter sender email address" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
+                        <div class="relative">
+                            <input type="password" id="apiAuthKey" placeholder="Resend API Token Key (re_xxxx)" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition pr-16">
+                            <span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-[9px] font-bold text-emerald-500/70 uppercase tracking-widest mono">saved ✓</span>
+                        </div>
+                        <div>
+                            <input type="email" id="senderIdentity" placeholder="Enter sender email address" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
+                            <p id="senderDomainHint" class="text-[10px] text-amber-400/80 mt-1 hidden">⚠️ Make sure this domain is verified in your Resend account.</p>
+                        </div>
                         <input type="text" id="footerAddress" placeholder="Enter company name and address" class="w-full bg-[#0d1324] border border-slate-800 rounded p-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 theme-transition">
+                    </div>
+
+                    <!-- Dedup notice — shown after Excel parse if duplicates were removed -->
+                    <div id="dedupNoticeBanner" class="hidden flex items-center gap-2 bg-sky-500/10 border border-sky-500/20 rounded-lg px-3 py-2">
+                        <span class="text-sky-400 text-sm">🧹</span>
+                        <span id="dedupNoticeText" class="text-[11px] text-sky-300 font-medium"></span>
                     </div>
 
                     <div id="dispatch-summary-card" class="bg-[#070a13] border border-slate-800/80 rounded-xl p-4 space-y-2.5 shadow-inner theme-transition">
                         <div class="flex items-center justify-between text-xs"><span class="text-slate-400">Scrubbed Target Records:</span><span id="finalTargetDisplay" class="font-bold text-white mono">0 Targets Loaded</span></div>
                         <div class="flex items-center justify-between text-xs"><span class="text-slate-400">Structural Core Blueprint:</span><span id="finalTemplateDisplay" class="font-bold text-emerald-400 mono">Catalog Showcase Grid Layout</span></div>
+                        <!-- Test email button -->
+                        <button onclick="sendTestEmailToSelf()" id="testSelfBtn" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold text-xs uppercase tracking-wider py-2.5 px-4 rounded-xl transition-all duration-200 cursor-pointer">📨 Send Test to Myself</button>
                         <button onclick="executeBulkBlastTransmission()" id="blastTriggerBtn" class="w-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-black text-xs uppercase tracking-wider py-4 px-4 rounded-xl shadow-xl block text-center cursor-pointer glow-btn">⚡ INITIALIZE COMPLIANT COURIER DISPATCH BLAST</button>
                     </div>
 
@@ -224,7 +294,7 @@
                         <span class="text-amber-500/80 text-xs">🔒</span> Proprietary Software License Notice
                     </div>
                     <p class="text-[9px] text-slate-500 leading-normal max-w-xs mx-auto font-medium">
-                        The whole and sole architecture, operational scripts, and codebase of this application are strictly proprietary to <strong class="text-slate-300" id="licensing-author">Rujuta Sawant</strong>.Modification or re-selling is strictly prohibited.
+                        The whole and sole architecture, operational scripts, and codebase of this application are strictly proprietary to <strong class="text-slate-300" id="licensing-author">Rujuta Sawant</strong>..Modification or re-selling is strictly prohibited.
                     </p>
                 </div>
             </footer>
